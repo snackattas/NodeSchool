@@ -1,13 +1,7 @@
-function concatenator (value) {
-	return value.message.slice(0,50);
-};
-
 function getShortMessages(messages) {
-	return messages.filter(value => value.message.slice(0,50));
+	//return messages.map(currentValue => currentValue.filter( currentValue => currentValue.message.length < 50 ));
+	return messages.filter(currentValue => currentValue.message.length < 50)
+	.map(currentValue => currentValue.message);
 };
 
 module.exports = getShortMessages;
-
-obby = [{message: 'aaaaaaaaaaaaaaaaaaaaaaaaaaa bbbbbbbbbbbbbbbbbbbbbbb ccccccccccccccdsafdsafadsfdsafdsafsaccccccccccccccdddddddddddddddddd'},
-{message:'ddddddddddddddddeeeeeeeeeeeeeeeefffffffffffffffggggasdfdasfadsfsdafadsfdasfdsggggggggggssssssssssss'}];
-console.log(getShortMessages(obby));
