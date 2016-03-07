@@ -1,11 +1,17 @@
-http = require('http');
-util = require('util');
-var URL = process.argv[2];
+var http = require('http');
 
-http.get(process.argv[2], (res) => {
-  console.log('Got response: '+ util.inspect(res));
-  // consume response body
-  res.resume();
-}).on('error', (e) => {
-  console.log(`Got error: ${e.message}`);
-});
+function content(data) {
+  	console.log(data);
+};
+
+function print_error(error) {
+  console.log(error.message);
+};
+
+function callback(response) {
+  response.setEncoding('utf8');
+  response.on('error', print_error);
+  response.on('data', content);
+};
+
+http.get(process.argv[2], callback);
